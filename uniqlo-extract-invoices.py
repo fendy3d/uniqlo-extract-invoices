@@ -73,6 +73,7 @@ for _, _, files in os.walk(pathToPdfs):
             elif 'PBI-' in filename:
             	print("==============================")
             	print("PBI invoices - " + filename)
+            	
             	nomor_invoice = list_of_texts[2].split('Invoice No : ')[-1]
             	date_of_invoice_list = list_of_texts[1].split('Date : ')[-1].split(' ')
             	day = str(date_of_invoice_list[1].replace(',', ''))
@@ -80,7 +81,7 @@ for _, _, files in os.walk(pathToPdfs):
             	year = str(date_of_invoice_list[2])
             	date_of_invoice = day + '/' + month + '/' + year
             	bill_to = list_of_texts[2].split(' Invoice No')[0]
-            	description = "XXX"
+            	description = list_of_texts[7].split(' Rp')[0]
             	dpp = list_of_texts[8].split(' ')[-1].replace('.','')
             	ppn = list_of_texts[9].split(' ')[-1].replace('.','')
             	total = list_of_texts[10].split(' ')[-1].replace('.','')
