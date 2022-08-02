@@ -54,6 +54,11 @@ for _, _, files in os.walk(pathToPdfs):
             table = page.extract_tables()[0]
             list_of_texts = texts.split('\n')
 
+            # UNCOMMENT THIS TO PRINT
+            # counter = 0
+            # for text in list_of_texts:
+            # 	print(str(counter) + text)
+            # 	counter += 1
             
             if 'AFI-' in filename:
             	print("==============================")
@@ -74,6 +79,8 @@ for _, _, files in os.walk(pathToPdfs):
             	print("==============================")
             	print("PBI invoices - " + filename)
             	
+
+
             	nomor_invoice = list_of_texts[2].split('Invoice No : ')[-1]
             	date_of_invoice_list = list_of_texts[1].split('Date : ')[-1].split(' ')
             	day = str(date_of_invoice_list[1].replace(',', ''))
@@ -82,9 +89,9 @@ for _, _, files in os.walk(pathToPdfs):
             	date_of_invoice = day + '/' + month + '/' + year
             	bill_to = list_of_texts[2].split(' Invoice No')[0]
             	description = list_of_texts[7].split(' Rp')[0]
-            	dpp = list_of_texts[8].split(' ')[-1].replace('.','')
-            	ppn = list_of_texts[9].split(' ')[-1].replace('.','')
-            	total = list_of_texts[10].split(' ')[-1].replace('.','')
+            	dpp = list_of_texts[8].split('Rp.')[-1].replace('.','').replace(' ','')
+            	ppn = list_of_texts[9].split('Rp. ')[-1].replace('.','').replace(' ','')
+            	total = list_of_texts[10].split('Rp.')[-1].replace('.','').replace(' ', '')
 
             list_of_rows.append([
                     nomor_invoice,
